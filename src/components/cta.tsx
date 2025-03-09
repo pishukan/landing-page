@@ -28,40 +28,40 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-16 bg-blue-600 text-white">
+    <section  id="about" className="py-16 bg-blue-600  text-white rounded-tl-4xl rounded-tr-4xl">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left - Contact Info */}
           <motion.div
-            className="text-center md:text-left"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold">Get in Touch</h2>
-            <p className="mt-4 text-lg">
-              Have any questions or want to place an order? Contact us anytime!
-            </p>
+        className="text-left self-start" // Ensures top alignment on mobile
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className="text-3xl md:text-5xl font-bold text-center font-bodoni italic">Get in Touch</h2>
+        <p className="mt-4 text-lg font-thin text-center">
+          Have any questions or want to place an order? Contact us anytime!
+        </p>
 
-            <div className="mt-6 space-y-4">
-              <div className="flex items-center justify-center md:justify-start">
-                <MapPin className="text-white" size={32} />
-                <p className="ml-3 text-lg">Marine Avenue, Pishukan, Gwadar</p>
-              </div>
-              <div className="flex items-center justify-center md:justify-start">
-                <Phone className="text-white" size={32} />
-                <p className="ml-3 text-lg">+92-3212018025 (WhatsApp)</p>
-              </div>
-              <div className="flex items-center justify-center md:justify-start">
-                <Mail className="text-white" size={32} />
-                <p className="ml-3 text-lg">pishukansf@gmail.com</p>
-              </div>
-              <div className="flex items-center justify-center md:justify-start">
-                <MessageCircle className="text-white" size={32} />
-                <p className="ml-3 text-lg">Live Chat Available</p>
-              </div>
-            </div>
-          </motion.div>
+        <div className="mt-6 space-y-4">
+          <div className="flex items-center">
+            <MapPin className="text-white" size={32} />
+            <p className="ml-3 text-lg">Marine Avenue (Near Fish Harbour), Pishukan, Gwadar</p>
+          </div>
+          <div className="flex items-center">
+            <Phone className="text-white" size={32} />
+            <p className="ml-3 text-lg">+92-3212018025 (WhatsApp)</p>
+          </div>
+          <div className="flex items-center">
+            <Mail className="text-white" size={32} />
+            <p className="ml-3 text-lg">pishukansf@gmail.com</p>
+          </div>
+          <div className="flex items-center">
+            <MessageCircle className="text-white" size={32} />
+            <p className="ml-3 text-lg">Live Chat Available</p>
+          </div>
+        </div>
+      </motion.div>
 
           {/* Right - Contact Form */}
           <motion.div

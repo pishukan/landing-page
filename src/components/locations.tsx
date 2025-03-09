@@ -10,7 +10,7 @@ const ResponsibleFishing = () => {
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Full-Width Title */}
         <motion.h2
-          className="text-3xl md:text-5xl font-bold text-gray-800 text-center w-full mb-10"
+          className="text-3xl md:text-5xl font-bold text-gray-800 text-center w-full mb-10 font-bodoni italic"
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -36,28 +36,28 @@ const ResponsibleFishing = () => {
             <div className="mt-0 space-y-6">
               <div className="flex items-center">
                 <MapPin className="text-blue-600" size={28} />
-                <p className="ml-3 text-sm md:text-lg font-light text-gray-700">
+                <p className="ml-3 text-sm md:text-lg   text-gray-700">
                   Catch Origin: Directly from the Arabian Sea along Gwadar’s coastline.
                 </p>
               </div>
 
               <div className="flex items-center">
                 <ShieldCheck className="text-green-600" size={28} />
-                <p className="ml-3 text-sm md:text-lg font-light text-gray-700">
+                <p className="ml-3 text-sm md:text-lg   text-gray-700">
                   Handling & Processing: HACCP-certified facilities ensure food safety.
                 </p>
               </div>
 
               <div className="flex items-center">
                 <PackageCheck className="text-orange-600" size={28} />
-                <p className="ml-3 text-sm md:text-lg font-light text-gray-700">
+                <p className="ml-3 text-sm md:text-lg   text-gray-700">
                   Custom Packing: Block Frozen, IQF, and Blast Frozen available per buyer needs.
                 </p>
               </div>
 
               <div className="flex items-center">
                 <Leaf className="text-purple-600" size={28} />
-                <p className="ml-3 text-sm md:text-lg font-light text-gray-700">
+                <p className="ml-3 text-sm md:text-lg   text-gray-700">
                   Sustainability: Eco-friendly fishing methods protect marine biodiversity.
                 </p>
               </div>

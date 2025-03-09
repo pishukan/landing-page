@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({
         </motion.div>
 
         <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-2"
+          className="text-4xl md:text-6xl font-bold mb-2 font-bodoni italic"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -68,15 +68,21 @@ const Hero: React.FC<HeroProps> = ({
           {subtitle}
         </motion.p>
 
-        <motion.a
-          href={buttonLink}
+        <motion.button
+          onClick={() => {
+            const section = document.getElementById("products");
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
           className="mt-7 py-3 inline-flex h-12 shimmer-bg items-center justify-center rounded-md border border-slate-800 px-6 font-medium text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
         >
           {buttonText}
-        </motion.a>
+        </motion.button>
+
 
         
         

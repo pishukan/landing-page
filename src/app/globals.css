@@ -24,6 +24,11 @@
   animation: shimmer 2s linear infinite;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 @keyframes shimmer {
   from {
     background-position: 0 0;

@@ -65,10 +65,10 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-16 font-opensans">
+    <section className="py-16 font-opensans mb-10">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
         {/* Title */}
-        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-10">
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-6 font-bodoni italic">
           Frequently Asked Questions
         </h2>
 

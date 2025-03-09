@@ -56,7 +56,7 @@ const Quality = () => {
   return (
     <section className="py-16  font-opensans">
       <div className="container mx-auto px-6 md:px-12 lg:px-20">
-        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-4">
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-gray-800 mb-4 font-bodoni italic">
         Current Certifications & Licenses
         </h2>
 
@@ -74,25 +74,25 @@ const Quality = () => {
 
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {certifications.map((cert) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {certifications.map((cert) => (
             <motion.div
-            key={cert.id}
-            className="flex items-center bg-gradient-to-br from-[#023a45cb] via-[#000b0de6] to-[#0c2c35] shadow-md rounded-lg p-6 text-gray-800 border border-gray-300"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: cert.id * 0.1 }}
-          >
-            {/* Ensure the icon has a fixed size */}
-            <div className="flex-shrink-0 w-12 h-12 text-white">
-              {cert.icon}
-            </div>
-          
-            {/* Text with proper spacing */}
-            <p className="ml-4 text-lg text-white font-bodoni italic font-semibold">{cert.title}</p>
-          </motion.div>
-        ))}
+              key={cert.id}
+              className="flex items-center bg-gradient-to-br from-[#023a45cb] via-[#000b0de6] to-[#0c2c35] 
+                        shadow-md rounded-lg p-4 text-gray-800 border border-gray-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: cert.id * 0.1 }}
+            >
+              {/* Ensure the icon has a fixed size */}
+              <div className="flex-shrink-0 w-8 h-8 text-white">{cert.icon}</div>
+
+              {/* Text with proper spacing */}
+              <p className="ml-4 text-sm md:text-base text-white">{cert.title}</p>
+            </motion.div>
+          ))}
         </div>
+
 
       </div>
     </section>

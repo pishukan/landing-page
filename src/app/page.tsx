@@ -18,7 +18,7 @@ export default function Home() {
       <div className="relative">
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/hero-bg-2.png"
+            src="/hero-bg-3.jpg"
             alt="Hero Background"
             fill
             className="object-cover"

@@ -28,6 +28,27 @@ html {
   scroll-behavior: smooth;
 }
 
+.scroller .duplicate-item {
+  pointer-events: none !important;
+}
+
+.scroller .original-item {
+  pointer-events: auto !important;
+}
+
+/* This ensures clicks are handled correctly */
+.animate-scroll {
+  animation: scroll var(--animation-duration) linear infinite var(--animation-direction);
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50%));
+  }
+}
 
 @keyframes shimmer {
   from {

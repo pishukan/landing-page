@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useCallback } from 'react';
 import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 
 // Fish Products
@@ -91,30 +92,49 @@ const otherSeafood = [
   },
 ];
 
-const Products = () => {
+interface ProductsProps {
+  onProductClick?: (productTitle: string) => void;
+}
+
+const Products = ({ onProductClick }: ProductsProps) => {
+  // Use useCallback to ensure this function is stable between renders
+  const handleProductClick = useCallback((productTitle: string) => {
+    console.log("Product clicked:", productTitle); // Debug logging
+    if (onProductClick) {
+      onProductClick(productTitle);
+    }
+  }, [onProductClick]);
+
   return (
-    <section id="products" className="py-16  font-opensans">
-    <div className="container mx-auto px-6 md:px-12 lg:px-20">
-      {/* FISH PRODUCTS */}
-      <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-6 font-bodoni italic">
-        Our Product Offerings
-      </h2>
+    <section id="products" className="py-16 font-opensans">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+        {/* FISH PRODUCTS */}
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-6 font-bodoni italic">
+          Our Product Offerings
+        </h2>
         <p className="w-4/5 mx-auto text-center font-light text-white">
-            Pishukan Seafood exports premium seafood from the Gwadar coastline of the Arabian Sea.
+          Pishukan Seafood exports premium seafood from the Gwadar coastline of the Arabian Sea.
         </p>
 
-  
-      <div className="h-64 md:h-72 flex items-center justify-center overflow-hidden mb-0">
-        <InfiniteMovingCards items={fishProducts} direction="left" speed="normal" />
-      </div>
-  
-      <div className="h-64 md:h-72 flex items-center justify-center overflow-hidden">
-        <InfiniteMovingCards items={otherSeafood} direction="right" speed="normal" />
-      </div>
-    </div>
-  </section>
-  
+        <div className="h-64 md:h-72 flex items-center justify-center overflow-hidden mb-0">
+          <InfiniteMovingCards 
+            items={fishProducts} 
+            direction="left" 
+            speed="normal" 
+            onProductClick={handleProductClick}
+          />
+        </div>
 
+        <div className="h-64 md:h-72 flex items-center justify-center overflow-hidden">
+          <InfiniteMovingCards 
+            items={otherSeafood} 
+            direction="right" 
+            speed="normal" 
+            onProductClick={handleProductClick}
+          />
+        </div>
+      </div>
+    </section>
   );
 };
 

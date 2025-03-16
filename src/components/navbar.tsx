@@ -4,8 +4,36 @@ import { useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
-const Navbar = () => {
+interface NavbarProps {
+  onOpenProductDialog?: () => void;
+}
+
+const Navbar = ({ onOpenProductDialog }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleProductsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // First close mobile menu if open
+    setIsOpen(false);
+    
+    // Scroll to products section
+    const productsSection = document.getElementById("products");
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: "smooth" });
+      
+      // Make sure we're actually receiving the function and it's callable
+      console.log("Function received:", !!onOpenProductDialog);
+      
+      // Delay opening the dialog to allow scrolling to complete
+      if (onOpenProductDialog) {
+        setTimeout(() => {
+          console.log("Opening product dialog now");
+          onOpenProductDialog();
+        }, 800);
+      }
+    }
+  };
 
   return (
     <nav className="fixed w-full z-50 bg-black/15 backdrop-blur-md">
@@ -21,7 +49,13 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-3 text-white">
           <a href="#about" className="hover:text-blue-600 transition">About</a>
-          <a href="#products" className="hover:text-blue-600 transition">Products</a>
+          {/* Very explicitly handle click */}
+          <button 
+            className="hover:text-blue-600 transition text-white bg-transparent"
+            onClick={handleProductsClick}
+          >
+            Products
+          </button>
           <a href="#contact" className="hover:text-blue-600 transition">Contact</a>
         </div>
 
@@ -35,7 +69,13 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-white/5 backdrop-blur-md p-4 space-y-4">
           <a href="#about" className="block text-white hover:text-blue-600 transition" onClick={() => setIsOpen(false)}>About</a>
-          <a href="#products" className="block text-white hover:text-blue-600 transition" onClick={() => setIsOpen(false)}>Products</a>
+          {/* Change to button for mobile too */}
+          <button 
+            className="block text-white hover:text-blue-600 transition text-left w-full bg-transparent"
+            onClick={handleProductsClick}
+          >
+            Products
+          </button>
           <a href="#contact" className="block text-white hover:text-blue-600 transition" onClick={() => setIsOpen(false)}>Contact</a>
         </div>
       )}

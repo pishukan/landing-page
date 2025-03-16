@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 export const InfiniteMovingCards = ({
   items,
@@ -9,9 +9,10 @@ export const InfiniteMovingCards = ({
   speed = "fast",
   pauseOnHover = true,
   className,
+  onProductClick,
 }: {
   items: {
-    image: string; // New image property
+    image: string;
     title: string;
     subtitle: string;
   }[];
@@ -19,19 +20,24 @@ export const InfiniteMovingCards = ({
   speed?: "fast" | "normal" | "slow";
   pauseOnHover?: boolean;
   className?: string;
+  onProductClick?: (productTitle: string) => void;
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
   const [start, setStart] = useState(false);
 
+  // Use useCallback to ensure this function doesn't change between renders
+  const handleClick = useCallback((title: string) => {
+    if (onProductClick) {
+      onProductClick(title);
+    }
+  }, [onProductClick]);
+
   useEffect(() => {
     if (!scrollerRef.current || !containerRef.current || start) return;
 
-    const scrollerContent = Array.from(scrollerRef.current.children);
-    scrollerContent.forEach((item) => {
-      const duplicatedItem = item.cloneNode(true);
-      scrollerRef.current?.appendChild(duplicatedItem);
-    });
+    // Instead of cloning DOM elements, we'll just duplicate the items array in our JSX render
+    // This ensures React event handlers work properly on all items
 
     if (containerRef.current) {
       containerRef.current.style.setProperty(
@@ -47,6 +53,10 @@ export const InfiniteMovingCards = ({
 
     setStart(true);
   }, [direction, speed, start]);
+
+  // Create a doubled array of items for the infinite scroll effect
+  // This is better than DOM cloning for React components
+  const doubledItems = [...items, ...items];
 
   return (
     <div
@@ -64,13 +74,16 @@ export const InfiniteMovingCards = ({
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
-        {items.map((item, idx) => (
+        {doubledItems.map((item, idx) => (
           <li
-          key={`${item.title}-${idx}`}
-          className="w-[140px] h-[180px] md:w-[160px] md:h-[200px] relative rounded-lg overflow-hidden shadow-lg shrink-0 border border-gray-700"
-        >
-        
-        
+            key={`${item.title}-${idx}`}
+            className="w-[140px] h-[180px] md:w-[160px] md:h-[200px] relative rounded-lg overflow-hidden shadow-lg shrink-0 border border-gray-700 cursor-pointer transition-transform hover:scale-105"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleClick(item.title);
+            }}
+          >
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover bg-center"

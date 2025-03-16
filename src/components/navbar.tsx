@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 interface NavbarProps {
   onOpenProductDialog?: () => void;
 }
+  
 
 const Navbar = ({ onOpenProductDialog }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
